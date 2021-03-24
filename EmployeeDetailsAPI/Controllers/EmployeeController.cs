@@ -14,12 +14,12 @@ namespace EmployeeDetailsAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeService employeeService;
-        private readonly ILogger<EmployeeController> logger;
+        private readonly IEmployeeService _employeeService;
+        private readonly ILogger<EmployeeController> _logger;
         public EmployeeController(IEmployeeService employee,ILogger<EmployeeController> logger)
         {
-            employeeService = employee;
-            this.logger = logger;
+            _employeeService = employee;
+            this._logger = logger;
         }
 
         [HttpGet]
@@ -27,8 +27,8 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/GetEmployee")]
         public IEnumerable<Employee> GetEmployee()
         {
-            logger.LogInformation("Getting all Employees");
-            return employeeService.GetEmployee();
+            _logger.LogInformation("Getting all Employees");
+            return _employeeService.GetEmployee();
         }
  
         [HttpPost]
@@ -36,10 +36,10 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/AddEmployee")]
         public Employee AddEmployee(Employee employee)
         {
-            var result = employeeService.AddEmployee(employee);
+            var result = _employeeService.AddEmployee(employee);
             if (result != null)
             {
-                logger.LogInformation("Added Successfully");
+                _logger.LogInformation("Added Successfully");
             }
             return result;
 
@@ -50,10 +50,10 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/EditEmployee")]
         public Employee EditEmployee(Employee employee)
         {
-            var result = employeeService.UpdateEmployee(employee);
+            var result = _employeeService.UpdateEmployee(employee);
             if (result != null)
-            { 
-                logger.LogInformation("Updated Successfully");
+            {
+                _logger.LogInformation("Updated Successfully");
             }
             return result;
         }
@@ -63,14 +63,14 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/DeleteEmployee")]
         public Employee DeleteEmployee(int id)
         {
-            var result = employeeService.DeleteEmployee(id);
+            var result = _employeeService.DeleteEmployee(id);
             if (result == null)
             {
-                logger.LogWarning($"Employee with ID {id} is not found");
+                _logger.LogWarning($"Employee with ID {id} is not found");
             }
             else
             {
-                logger.LogInformation("Deleted Successfully");
+                _logger.LogInformation("Deleted Successfully");
             }
             return result;
         }
@@ -80,10 +80,10 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/GetEmployeeId")]
         public Employee GetEmployeeId(int id)
         {
-            var result = employeeService.GetEmployeeById(id);
+            var result = _employeeService.GetEmployeeById(id);
             if (result == null)
             {
-                logger.LogWarning($"Employee with ID {id} is not found");
+                _logger.LogWarning($"Employee with ID {id} is not found");
             }
 
             return result;
@@ -94,10 +94,10 @@ namespace EmployeeDetailsAPI.Controllers
         [Route("api/Employee/GetEmployeeStatus")]
         public string GetEmployeeStatus(int id)
         {
-            var result = employeeService.GetEmployeeByStatus(id);
+            var result = _employeeService.GetEmployeeByStatus(id);
             if (result == null)
             {
-                logger.LogWarning($"Employee with ID {id} is not found");
+                _logger.LogWarning($"Employee with ID {id} is not found");
             }
 
             return result;
