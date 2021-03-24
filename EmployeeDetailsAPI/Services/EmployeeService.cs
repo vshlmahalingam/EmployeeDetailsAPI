@@ -23,7 +23,8 @@ namespace EmployeeDetailsAPI.Services
 
         public IEnumerable<Employee> GetEmployee()
         {
-            var employee = dbContext.Employees.ToList();
+            //Sorted Employees by First Name
+            var employee = dbContext.Employees.OrderBy(s => s.FirstName).ToList();
             return employee;
         }
         public Employee AddEmployee(Employee employee)

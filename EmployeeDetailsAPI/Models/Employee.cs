@@ -12,14 +12,17 @@ namespace EmployeeDetailsAPI.Models
         {
             InverseManager = new HashSet<Employee>();
         }
-
+        [Required]
         public int EmployeeId { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
-
+        [Required]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
          ErrorMessage = "Invalid email format")]
         public string EmailId { get; set; }
+        [Required]
         public int? DepartmentId { get; set; }
         public int? ManagerId { get; set; }
 
